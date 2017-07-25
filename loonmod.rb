@@ -5,8 +5,11 @@ class Loonmod < Formula
     depends_on "python" => :run
 
     def install
-        system "cmake", "-DCMAKE_INSTALL_PREFIX=#{prefix}"
-        system "make", "install"
+        Dir.mkdir "build"
+        Dir.chdir "build" do
+            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}"
+            system "make", "install"
+        end
         ohai "Install to #{prefix}, run the following two commands before anything else"
         ohai "source #{prefix}/loonmod.zsh"
         ohai "mod_db db create"
