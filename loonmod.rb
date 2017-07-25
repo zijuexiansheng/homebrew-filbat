@@ -30,4 +30,11 @@ class Loonmod < Formula
         ENV["LOONCONFIG"]="#{HOMEBREW_PREFIX}/loonlocalfiles"
         system "#{prefix}/bin/moddb.py db create"
     end
+
+    def caveats
+        <<-EOS.undent
+            This formula is keg-only, which means brew will not link it. In order to use it, you need to add the following to your .bashrc or .zshrc. If you want to use the commands of this module in a bash/zsh script, you also need to add the following to your script:
+                source #{opt_prefix}/loonmod.zsh
+        EOS
+    end
 end
