@@ -6,17 +6,21 @@ class Tex2fig < Formula
     version "0.1.0"
     depends_on "python" => :run
 
-    def loonlocaldir
-        HOMEBREW_PREFIX/"loonlocalfiles"
-    end
-
-    def loonlocaldir_tex2fig
-        loonlocaldir/"tex2fig"
+    def tex2fig_aux
+        prefix/"script_dir"
     end
 
     def install
-        system "./install.sh"
-        bin.install "bin/tex2fig.py"
-        loonlocaldir_tex2fig.install "script_dir/tex2fig.sh", "script_dir/tex2fig.tmpl"
+        system "./install"
+        inreplace "bin/tex2fig", /os.path.join(os.environ[.*],.*)/, "#{tex2fig_aux}"
+        bin.install "bin/tex2fig"
+        tex2fig_aux.install "script_dir/tex2fig.sh", "script_dir/tex2fig.tmpl"
+    end
+
+    def caveats
+        <<-EOS.undent
+            Use "echo $LOONCONFIG" command to see if you have defined this environment variable.
+            If the output is empty, please set "export $LOONCONFIG=#{loonlocaldir}" in your .zshrc or .bashrc before using tex2fig
+        EOS
     end
 end
