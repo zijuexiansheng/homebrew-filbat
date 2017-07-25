@@ -2,7 +2,8 @@ class Loonmod < Formula
     desc "A zsh/bash module for dynamically manipulating environment variables"
     homepage "https://github.com/zijuexiansheng/loonmod"
     keg_only "This script is only source by user, don't make a soft link for it"
-    head "https://github.com/zijuexiansheng/loonmod.git", :revision => "f52450658f7272d746e22b38086f6165d5bfeae2"
+    url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "da812811ee1df8101e22f21f4b873f5446bc3b19"
+    version "0.1.1"
     depends_on "python" => :run
     depends_on "cmake" => :build
 
@@ -25,7 +26,7 @@ class Loonmod < Formula
     def post_install
         loonlocaldir.mkpath
         loonlocaldir_loonmod.mkpath
-        ENV["LOONMOD_CONFIG"]="#{HOMEBREW_PREFIX}/loonlocalfiles"
+        ENV["LOONCONFIG"]="#{HOMEBREW_PREFIX}/loonlocalfiles"
         system "#{prefix}/bin/moddb.py db create"
         ohai "Remember to source #{prefix}/bin/loonmod.zsh"
     end
