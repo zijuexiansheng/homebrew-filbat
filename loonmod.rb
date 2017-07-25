@@ -17,7 +17,7 @@ class Loonmod < Formula
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}" "-DCMAKE_LOONLOCAL_CACHE=#{HOMEBREW_PREFIX}/loonlocalfiles"
+            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_CACHE=#{HOMEBREW_PREFIX}/loonlocalfiles"
             system "make", "install"
         end
         ohai "Install to #{prefix}, run the following two commands before anything else"
@@ -27,6 +27,8 @@ class Loonmod < Formula
     def post_install
         loonlocaldir.mkpath
         loonlocaldir_loonmod.mkpath
-        ohai "Init database"
+        ENV["LOONMOD_CONFIG"]="#{HOMEBREW_PREFIX}/loonlocalfiles"
+        system "#{prefix}/bin/moddb.py db create"
+        ohai "Remember to source #{prefix}/loonmod.zsh"
     end
 end
