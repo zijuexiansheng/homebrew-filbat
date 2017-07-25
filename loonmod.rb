@@ -1,7 +1,7 @@
 class Loonmod < Formula
     desc "A zsh/bash module for dynamically manipulating environment variables"
     homepage "https://github.com/zijuexiansheng/loonmod"
-    keg_only "This script is only source by user. Just add the command to your .zshrc or .bashrc file \"source #{HOMEBREW_PREFIX}/opt/loonmod/bin/loonmod.zsh\""
+    keg_only "This is only a script. Read the caveats above and ignore the ones below!!!"
     url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "3b15b8301d9e94b6a326f16b00172b944d868487"
     head "https://github.com/zijuexiansheng/loonmod.git", :using => :git
     version "0.1.3"
@@ -33,8 +33,12 @@ class Loonmod < Formula
 
     def caveats
         <<-EOS.undent
-            This formula is keg-only, which means brew will not link it. In order to use it, you need to add the following to your .bashrc or .zshrc. If you want to use the commands of this module in a bash/zsh script, you also need to add the following to your script:
-                source #{opt_prefix}/loonmod.zsh
+            This formula is keg-only, which means brew will not link it.
+            In order to use it, you need to add the following to your .bashrc or .zshrc: 
+                source #{opt_prefix}/bin/loonmod.zsh
+
+            If you want to use the commands of this module in a bash/zsh script, you also need to add it to your script.
+            ================================================================================
         EOS
     end
 end
