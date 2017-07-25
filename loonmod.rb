@@ -2,9 +2,9 @@ class Loonmod < Formula
     desc "A zsh/bash module for dynamically manipulating environment variables"
     homepage "https://github.com/zijuexiansheng/loonmod"
     keg_only "This is only a script. Read the caveats above and ignore the ones below!!!"
-    url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "3b15b8301d9e94b6a326f16b00172b944d868487"
+    url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "c1883a28493b140325e884281177eb6bf9f4f5c1"
     head "https://github.com/zijuexiansheng/loonmod.git", :using => :git
-    version "0.1.3"
+    version "0.1.4"
     depends_on "python" => :run
     depends_on "cmake" => :build
 
