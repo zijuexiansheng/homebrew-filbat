@@ -20,8 +20,6 @@ class Loonmod < Formula
             system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_CACHE=#{HOMEBREW_PREFIX}/loonlocalfiles"
             system "make", "install"
         end
-        ohai "Install to #{prefix}, run the following two commands before anything else"
-        ohai "source #{prefix}/loonmod.zsh"
     end
 
     def post_install
@@ -29,6 +27,6 @@ class Loonmod < Formula
         loonlocaldir_loonmod.mkpath
         ENV["LOONMOD_CONFIG"]="#{HOMEBREW_PREFIX}/loonlocalfiles"
         system "#{prefix}/bin/moddb.py db create"
-        ohai "Remember to source #{prefix}/loonmod.zsh"
+        ohai "Remember to source #{prefix}/bin/loonmod.zsh"
     end
 end
