@@ -3,6 +3,7 @@ class Loonmod < Formula
     homepage "https://github.com/zijuexiansheng/loonmod"
     head "https://github.com/zijuexiansheng/loonmod.git", :revision => "502a36ae7edbe1597342984e926a8fb92bdbd5bb"
     depends_on "python" => :run
+    depends_on "cmake"
 
     def install
         Dir.mkdir "build"
