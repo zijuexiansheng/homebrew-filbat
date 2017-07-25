@@ -1,7 +1,7 @@
 class Loonmod < Formula
     desc "A zsh/bash module for dynamically manipulating environment variables"
     homepage "https://github.com/zijuexiansheng/loonmod"
-    keg_only "This script is only source by user. Just add the command to your .zshrc or .bashrc file \"source #{opt_prefix}/opt/#{name}/bin/loonmod.zsh\""
+    keg_only "This script is only source by user. Just add the command to your .zshrc or .bashrc file \"source #{HOMEBREW_PREFIX}/opt/loonmod/bin/loonmod.zsh\""
     url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "3b15b8301d9e94b6a326f16b00172b944d868487"
     head "https://github.com/zijuexiansheng/loonmod.git", :using => :git
     version "0.1.3"
