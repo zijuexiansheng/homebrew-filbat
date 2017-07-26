@@ -6,14 +6,15 @@ class PrZshrcAfs < Formula
     version "0.1.0"
     depends_on "cmake" => :build
 
-    option "with-intel", "Build for intel architecture. If not set, build for AMD"
-
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            if build.with? "intel"
+            is_intel = %x{ lscpu | grep "Intel(R)" }
+            if is_intel != ""
+                ohai "Install to an Intel(R) computer"
                 system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal_intel"
             else
+                ohai "Install to an AMD computer"
                 system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal"
             end
             system "make", "install"
