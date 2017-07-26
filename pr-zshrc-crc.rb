@@ -1,4 +1,4 @@
-class PrZshrcAfs < Formula
+class PrZshrcCrc < Formula
     desc "My private zshrc configuration on my remote CRC"
     homepage "https://bitbucket.org/zijuexiansheng/bash_rc"
     keg_only "This is only a script for source"
