@@ -9,8 +9,8 @@ class PrZshrcAfs < Formula
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            is_intel = system "lscpu | grep \"Intel(R)\""
-            if is_intel
+            is_intel = %x{ lscpu | grep "Intel(R)" }
+            if is_intel != ""
                 ohai "Install to an Intel(R) computer"
                 system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal_intel"
             else
