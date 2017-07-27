@@ -11,7 +11,7 @@ class PrLoonlib < Formula
         odie "Please set your magic number" if magic_number == 0
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "cmake", "..", "--DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_BUILD_TYPE=Release", "-DLOGGER_LEVEL=#{logger_level}", "-DLOONPRIVATE_RAND_SHIFT=#{magic_number}"
+            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_BUILD_TYPE=Release", "-DLOGGER_LEVEL=#{logger_level}", "-DLOONPRIVATE_RAND_SHIFT=#{magic_number}"
             system "make", "install"
         end
     end
