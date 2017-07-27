@@ -2,14 +2,14 @@ class Loonmod < Formula
     desc "A zsh/bash module for dynamically manipulating environment variables"
     homepage "https://github.com/zijuexiansheng/loonmod"
     keg_only "This is only a script. Read the caveats above and ignore the ones below!!!"
-    url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "e4e94a7f9f1e45ba5716a155ea6639e966286a4a"
+    url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "ee4b16663c7b39e12631a7c3082dd84440c87a7d"
     head "https://github.com/zijuexiansheng/loonmod.git", :using => :git
-    version "0.1.5"
+    version "0.1.6"
     depends_on "python" => :run
     depends_on "cmake" => :build
 
     def loonlocaldir
-        HOMEBREW_PREFIX/"loonlocalfiles"
+        var/"loonlocalfiles"
     end
 
     def loonlocaldir_loonmod
@@ -19,7 +19,7 @@ class Loonmod < Formula
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_CACHE=#{HOMEBREW_PREFIX}/loonlocalfiles"
+            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_CACHE=#{loonlocaldir}"
             system "make", "install"
         end
     end
@@ -27,7 +27,7 @@ class Loonmod < Formula
     def post_install
         loonlocaldir.mkpath
         loonlocaldir_loonmod.mkpath
-        ENV["LOONCONFIG"]="#{HOMEBREW_PREFIX}/loonlocalfiles"
+        ENV["LOONCONFIG"]="#{loonlocaldir}"
         system "#{prefix}/bin/moddb.py db create"
     end
 
