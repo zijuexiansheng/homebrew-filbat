@@ -3,7 +3,7 @@ class PrZshrcAfs < Formula
     homepage "https://bitbucket.org/zijuexiansheng/bash_rc"
     keg_only "This is only a script for source"
     url "git@bitbucket.org:zijuexiansheng/bash_rc.git", :using => :git, :branch => "afs"
-    version "0.1.0"
+    version "0.1.1"
     depends_on "cmake" => :build
 
     def install
