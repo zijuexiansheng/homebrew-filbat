@@ -30,10 +30,10 @@ class PrLoontools < Formula
 
     def caveats
         <<-EOS.undent
-            *. "loon_encrypt" and "loon_decrypt" are installed into directory #{libexec}/loon_crypt. Please add them to "loonmod" database
-            *. private directory has been created at #{loonlocaldir_private}
-            *. "loontools", "ndssh" are installed into bin/ dir.
-            *. Please double check your "magic_option"
+            * "loon_encrypt" and "loon_decrypt" are installed into directory #{libexec}/loon_crypt. Please add them to "loonmod" database
+            * private directory has been created at #{loonlocaldir_private}
+            * "loontools", "ndssh" are installed into bin/ dir.
+            * Please double check your "magic_option"
             -------------------------------------------------------------------
         EOS
     end
