@@ -2,7 +2,7 @@ class PrLoontools < Formula
     desc "My private tools"
     homepage "https://bitbucket.org/zijuexiansheng/loontools"
     url "git@bitbucket.org:zijuexiansheng/loontools.git", :using => :git
-    version "0.1.4"
+    version "0.1.5"
     depends_on "cmake" => :build
     depends_on "pr-loonlib" => :build
 
@@ -32,7 +32,7 @@ class PrLoontools < Formula
         <<-EOS.undent
             * "loon_encrypt" and "loon_decrypt" are installed into directory #{libexec}/loon_crypt. Please add them to "loonmod" database
             * private directory has been created at #{loonlocaldir_private}
-            * "loontools", "ndssh" are installed into bin/ dir.
+            * "loontools", "ndssh", "ndscp" are installed into bin/ dir.
             * Please double check your "magic_option"
             -------------------------------------------------------------------
         EOS
