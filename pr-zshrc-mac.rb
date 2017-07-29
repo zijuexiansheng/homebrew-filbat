@@ -1,8 +1,8 @@
 class PrZshrcMac < Formula
     desc "My private zshrc configuration on my Mac OSX"
-    homepage "https://bitbucket.org/zijuexiansheng/bash_rc"
+    homepage "https://bitbucket.org/zijuexiansheng/zshrc-mac"
     keg_only "This is only a script for source"
-    url "git@bitbucket.org:zijuexiansheng/bash_rc.git", :using => :git, :branch => "macosx"
+    url "git@bitbucket.org:zijuexiansheng/zshrc-mac.git", :using => :git
     version "0.1.5"
     depends_on "cmake" => :build
 

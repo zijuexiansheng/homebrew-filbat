@@ -1,8 +1,8 @@
 class PrZshrcCrc < Formula
     desc "My private zshrc configuration on my remote CRC"
-    homepage "https://bitbucket.org/zijuexiansheng/bash_rc"
+    homepage "https://bitbucket.org/zijuexiansheng/zshrc-crc"
     keg_only "This is only a script for source"
-    url "git@bitbucket.org:zijuexiansheng/bash_rc.git", :using => :git, :branch => "crc"
+    url "git@bitbucket.org:zijuexiansheng/zshrc-crc.git", :using => :git
     version "0.1.2"
     depends_on "cmake" => :build
 

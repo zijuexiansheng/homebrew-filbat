@@ -1,8 +1,8 @@
 class PrZshrcAfs < Formula
     desc "My private zshrc configuration on my remote AFS"
-    homepage "https://bitbucket.org/zijuexiansheng/bash_rc"
+    homepage "https://bitbucket.org/zijuexiansheng/zshrc-afs"
     keg_only "This is only a script for source"
-    url "git@bitbucket.org:zijuexiansheng/bash_rc.git", :using => :git, :branch => "afs"
+    url "git@bitbucket.org:zijuexiansheng/zshrc-afs.git", :using => :git
     version "0.1.1"
     depends_on "cmake" => :build
 
