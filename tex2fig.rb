@@ -1,9 +1,9 @@
 class Tex2fig < Formula
     desc "A tool to convert tex to independent figure in PDF format"
     homepage "https://github.com/zijuexiansheng/tex2fig"
-    url "https://github.com/zijuexiansheng/tex2fig.git", :using => :git, :revision => "7c783058589dcdc47cf8613b1ba35652993b90e3"
+    url "https://github.com/zijuexiansheng/tex2fig.git", :using => :git, :revision => "e663d26c28a15fb02b7aa67abfa8f99bcfdf9df5"
     head "https://github.com/zijuexiansheng/tex2fig.git", :using => :git
-    version "0.1.5"
+    version "0.1.6"
     depends_on "python" => :run
 
     def install
