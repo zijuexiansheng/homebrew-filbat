@@ -2,7 +2,7 @@ class PrLoontools < Formula
     desc "My private tools"
     homepage "https://bitbucket.org/zijuexiansheng/loontools"
     url "git@bitbucket.org:zijuexiansheng/loontools.git", :using => :git
-    version "0.1.7"
+    version "0.1.8"
     depends_on "cmake" => :build
     depends_on "pr-loonlib" => :build
 
@@ -31,7 +31,7 @@ class PrLoontools < Formula
     def caveats
         <<-EOS.undent
             * private directory has been created at #{loonlocaldir_private}
-            * "loontools", "ndssh", "ndscp", "load_password" are installed into bin/ dir.
+            * "loontools", "ndssh", "ndscp", are installed into bin/ dir.
             * Please double check your "magic_option"
             -------------------------------------------------------------------
         EOS
