@@ -2,7 +2,7 @@ class PrLoontools < Formula
     desc "My private tools"
     homepage "https://bitbucket.org/zijuexiansheng/loontools"
     url "git@bitbucket.org:zijuexiansheng/loontools.git", :using => :git
-    version "0.1.11"
+    version "0.1.12"
     depends_on "cmake" => :build
     depends_on "pr-loonlib" => :build
 
