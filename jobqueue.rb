@@ -1,4 +1,4 @@
-class Tex2fig < Formula
+class Jobqueue < Formula
     desc "A tool to convert tex to independent figure in PDF format"
     homepage "https://github.com/zijuexiansheng/jobqueue"
     url "https://github.com/zijuexiansheng/jobqueue.git", :using => :git, :revision => "cd9ffe16877b3f638323687402cb754f91b7bebd"
