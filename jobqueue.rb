@@ -22,7 +22,7 @@ class Jobqueue < Formula
     end
 
     test do
-        system "jobqueue", "-h"
+        system "jobqueue", "create"
     end
 end
 
