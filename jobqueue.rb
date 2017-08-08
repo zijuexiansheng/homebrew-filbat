@@ -20,9 +20,12 @@ class Jobqueue < Formula
         inreplace "jobqueue", "=>replace_me<=", "#{loonlocaldir}"
         bin.install "jobqueue"
     end
+    def post_install
+        system "jobqueue", "create"
+    end
 
     test do
-        system "jobqueue", "create"
+        system "jobqueue", "-h"
     end
 end
 
