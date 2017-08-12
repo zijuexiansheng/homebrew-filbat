@@ -1,9 +1,9 @@
 class Jobqueue < Formula
     desc "A tool to convert tex to independent figure in PDF format"
     homepage "https://github.com/zijuexiansheng/jobqueue"
-    url "https://github.com/zijuexiansheng/jobqueue.git", :using => :git, :revision => "cd70a80093586ff3dda47bea0737c56c4c7bc843"
+    url "https://github.com/zijuexiansheng/jobqueue.git", :using => :git, :revision => "2e71e61cbef91a898628657a59a557a453b8f0ab"
     head "https://github.com/zijuexiansheng/jobqueue.git", :using => :git
-    version "0.1.1"
+    version "0.1.2"
     depends_on "python" => :run
 
     def loonlocaldir
