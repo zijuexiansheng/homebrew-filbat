@@ -2,7 +2,7 @@ class PrLoonlib < Formula
     desc "My private library"
     homepage "https://bitbucket.org/zijuexiansheng/loonlib"
     url "git@bitbucket.org:zijuexiansheng/loonlib.git", :using => :git
-    version "0.1.10"
+    version "0.1.11"
     depends_on "cmake" => :build
 
     def install
