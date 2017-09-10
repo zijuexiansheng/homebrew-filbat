@@ -4,7 +4,7 @@ class Loonmod < Formula
     keg_only "This is only a script. Read the caveats above and ignore the ones below!!!"
     url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "6fce706705b9036cd8f61690e4c7f2380e891a33"
     head "https://github.com/zijuexiansheng/loonmod.git", :using => :git
-    version "0.1.11"
+    version "0.1.12"
     depends_on "python" => :run
     depends_on "cmake" => :build
 
