@@ -18,13 +18,13 @@ class Ccd < Formula
     def install
         bin.install "src/ccd"
         libexec.install "src/pyccd.py"
+        inreplace "#{bin}/ccd", "=>replace me<=", "#{libexec}/pyccd.py"
+        inreplace "#{libexec}/pyccd.py", "=>replace me<=", "#{loonlocaldir_ccd}/ccd.db"
     end
 
     def post_install
-        inreplace "#{bin}/ccd", "=>replace me<=", "#{libexec}/pyccd.py"
-        inreplace "#{libexec}/pyccd.py", "=>replace me<=", "#{loonlocaldir_ccd}/ccd.db"
         loonlocaldir_ccd.mkpath
-        system "#{libexec}/pyccd.py create"
+        system "python #{libexec}/pyccd.py create"
     end
 
     def caveats
