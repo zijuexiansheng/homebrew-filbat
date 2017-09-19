@@ -10,7 +10,7 @@ class PrZshrcMac < Formula
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal", "-CMAKE_BREWOPT_DIR=#{opt_prefix}"
+            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal", "-DCMAKE_BREWOPT_DIR=#{opt_prefix}"
             system "make", "install"
         end
     end
