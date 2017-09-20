@@ -3,13 +3,14 @@ class PrZshrcLinux < Formula
     homepage "https://bitbucket.org/zijuexiansheng/zshrc-linux"
     keg_only "This is only a script for source"
     url "git@bitbucket.org:zijuexiansheng/zshrc-linux.git", :using => :git
-    version "0.1.16"
+    version "0.1.17"
+    depends_on "zijuexiansheng/filbat/ccd" => :run
     depends_on "cmake" => :build
 
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal"
+            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal", "-DCMAKE_BREWOPT_DIR=#{HOMEBREW_PREFIX}/opt"
             system "make", "install"
         end
     end
