@@ -3,7 +3,7 @@ class Ccd < Formula
     homepage "https://github.com/zijuexiansheng/convenient_cd"
     keg_only "This is only a script. Read the caveats above and ignore the ones below"
     url "https://github.com/zijuexiansheng/convenient_cd.git", :using => :git
-    version "0.1.6"
+    version "0.1.8"
     
     depends_on "python" => :run
 
