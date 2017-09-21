@@ -3,7 +3,7 @@ class PrZshrcAfs < Formula
     homepage "https://bitbucket.org/zijuexiansheng/zshrc-afs"
     keg_only "This is only a script for source"
     url "git@bitbucket.org:zijuexiansheng/zshrc-afs.git", :using => :git
-    version "0.1.8"
+    version "0.1.9"
     depends_on "cmake" => :build
 
     def install
@@ -12,10 +12,10 @@ class PrZshrcAfs < Formula
             is_intel = %x{ lscpu | grep "Intel(R)" }
             if is_intel != ""
                 ohai "Install to an Intel(R) computer"
-                system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal_intel"
+                system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal_intel", "-DCMAKE_BREWOPT_DIR=#{HOMEBREW_PREFIX}/opt"
             else
                 ohai "Install to an AMD computer"
-                system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal"
+                system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_DIR=${HOME}/loonlocal", "-DCMAKE_BREWOPT_DIR=#{HOMEBREW_PREFIX}/opt"
             end
             system "make", "install"
         end
