@@ -3,7 +3,7 @@ class PrZshrcCrc < Formula
     homepage "https://bitbucket.org/zijuexiansheng/zshrc-crc"
     keg_only "This is only a script for source"
     url "git@bitbucket.org:zijuexiansheng/zshrc-crc.git", :using => :git
-    version "0.1.11"
+    version "0.1.12"
     depends_on "cmake" => :build
 
     def install
