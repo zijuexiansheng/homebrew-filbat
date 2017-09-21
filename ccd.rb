@@ -15,11 +15,17 @@ class Ccd < Formula
         loonlocaldir/"ccd"
     end
 
+    def ccd_completion
+        libexec/"completion"
+    end
+
     def install
         bin.install "src/ccd"
         libexec.install "src/pyccd.py"
+        ccd_completion.install "src/_ccd"
         inreplace "#{bin}/ccd", "=>replace me<=", "#{libexec}/pyccd.py"
         inreplace "#{libexec}/pyccd.py", "=>replace me<=", "#{loonlocaldir_ccd}/ccd.db"
+        inreplace "#{ccd_completion}/_ccd", "=>replace me<=", "#{libexec}/pyccd.py"
     end
 
     def post_install
@@ -31,7 +37,9 @@ class Ccd < Formula
         <<-EOS.undent
             This formula is keg-only, which means brew will not link it.
             In order to use it, you need to add the following to your .zshrc:
-                autoload -Uz #{opt_prefix}/bin/ccd
+                fpath=(#{opt_prefix}/bin #{opt_prefix}/libexec/completion $fpath)
+                autoload -Uz ccd compinit
+                compinit
                 
             =============================================================================
         EOS
