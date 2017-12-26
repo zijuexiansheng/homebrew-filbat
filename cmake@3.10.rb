@@ -31,11 +31,20 @@ class CmakeAT310 < Formula
     system "./bootstrap", *args, "--", "-DCMAKE_BUILD_TYPE=Release"
     system "make"
     system "make", "install"
-    mv bin/"ccmake", bin/"ccmake-#{version_suffix}"
-    mv bin/"cmake", bin/"cmake-#{version_suffix}"
-    mv bin/"cmakexbuild", bin/"cmakexbuild-#{version_suffix}"
-    mv bin/"cpack", bin/"cpack-#{version_suffix}"
-    mv bin/"ctest", bin/"ctest-#{version_suffix}"
+    ## mv bin/"ccmake", bin/"ccmake-#{version_suffix}"
+    ## mv bin/"cmake", bin/"cmake-#{version_suffix}"
+    ## mv bin/"cmakexbuild", bin/"cmakexbuild-#{version_suffix}"
+    ## mv bin/"cpack", bin/"cpack-#{version_suffix}"
+    ## mv bin/"ctest", bin/"ctest-#{version_suffix}"
+    Dir.glob(bin/"*") { |file| add_suffix file, version_suffix }
+    Dir.glob(share/"aclocal/*") { |file| add_suffix file, version_suffix }
+  end
+
+  def add_suffix(file, suffix)
+    dir = File.dirname(file)
+    ext = File.extname(file)
+    base = File.basename(file, ext)
+    File.rename file, "#{dir}/#{base}-#{suffix}#{ext}"
   end
 
   test do
