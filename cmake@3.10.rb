@@ -5,6 +5,8 @@ class CmakeAT310 < Formula
   sha256 "7be36ee24b0f5928251b644d29f5ff268330a916944ef4a75e23ba01e7573284"
   head "https://cmake.org/cmake.git"
 
+  revision 1
+
   bottle do
     cellar :any_skip_relocation
     sha256 "8771baaa9ea698a4aa84045917bd7ffa1834b4f5310b0fb26c279e1160b0dd1e" => :high_sierra
