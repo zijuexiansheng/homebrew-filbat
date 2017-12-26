@@ -16,10 +16,9 @@ class CmakeAT310 < Formula
   # CMake is built with Qt support and Qt is built with MySQL support as MySQL uses CMake.
   # For the GUI application please instead use `brew cask install cmake`.
 
-  version_suffix = version.to_s.slice(/\d+\.\d+/)
 
   def install
-    odie "the version suffix is [#{version_suffix}]"
+    version_suffix = version.to_s.slice(/\d+\.\d+/)
     args = %W[
       --prefix=#{prefix}
       --no-system-libs
@@ -41,6 +40,6 @@ class CmakeAT310 < Formula
 
   test do
     (testpath/"CMakeLists.txt").write("find_package(Ruby)")
-    system bin/"cmake-#{version_suffix}", "."
+    system bin/"cmake-3.10", "."
   end
 end
