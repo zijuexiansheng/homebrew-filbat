@@ -4,9 +4,9 @@ class Loonmod < Formula
     keg_only "This is only a script. Read the caveats above and ignore the ones below!!!"
     url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "b9877d86290215d135831da2537e8c3619864033"
     head "https://github.com/zijuexiansheng/loonmod.git", :using => :git
-    version "0.1.12"
+    version "0.1.13"
     depends_on "python" => :run
-    depends_on "cmake" => :build
+    depends_on "zijuexiansheng/filbat/cmake@3.10" => :build
 
     def loonlocaldir
         var/"loonlocalfiles"
@@ -19,7 +19,7 @@ class Loonmod < Formula
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "cmake", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_CACHE=#{loonlocaldir}"
+            system "cmake-3.10", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_CACHE=#{loonlocaldir}"
             system "make", "install"
         end
     end
