@@ -33,6 +33,7 @@ class CmakeAT310 < Formula
     system "./bootstrap", *args, "--", "-DCMAKE_BUILD_TYPE=Release"
     system "make"
     system "make", "install"
+    bin.mkpath
     Dir.glob(prefix/"local/bin/*") { |file| link_with_suffix file, version_suffix}
     
     ##ln_s prefix/"local/bin/ccmake", bin/"ccmake-#{version_suffix}"
