@@ -19,6 +19,7 @@ class CmakeAT310 < Formula
   version_suffix = version.to_s.slice(/\d+\.\d+/)
 
   def install
+    odie "the version suffix is [#{version_suffix}]"
     args = %W[
       --prefix=#{prefix}
       --no-system-libs
