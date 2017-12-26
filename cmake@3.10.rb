@@ -5,7 +5,7 @@ class CmakeAT310 < Formula
   sha256 "7be36ee24b0f5928251b644d29f5ff268330a916944ef4a75e23ba01e7573284"
   head "https://cmake.org/cmake.git"
 
-  revision 1
+  revision 2
 
   bottle do
     cellar :any_skip_relocation
@@ -22,7 +22,7 @@ class CmakeAT310 < Formula
   def install
     version_suffix = version.to_s.slice(/\d+\.\d+/)
     args = %W[
-      --prefix=#{prefix}
+      --prefix=#{prefix}/local
       --no-system-libs
       --parallel=#{ENV.make_jobs}
       --system-zlib
@@ -33,20 +33,20 @@ class CmakeAT310 < Formula
     system "./bootstrap", *args, "--", "-DCMAKE_BUILD_TYPE=Release"
     system "make"
     system "make", "install"
-    ## mv bin/"ccmake", bin/"ccmake-#{version_suffix}"
-    ## mv bin/"cmake", bin/"cmake-#{version_suffix}"
-    ## mv bin/"cmakexbuild", bin/"cmakexbuild-#{version_suffix}"
-    ## mv bin/"cpack", bin/"cpack-#{version_suffix}"
-    ## mv bin/"ctest", bin/"ctest-#{version_suffix}"
-    Dir.glob(bin/"*") { |file| add_suffix file, version_suffix }
-    Dir.glob(share/"aclocal/*") { |file| add_suffix file, version_suffix }
+    Dir.glob(prefix/"local/bin/*") { |file| link_with_suffix file, version_suffix}
+    
+    ##ln_s prefix/"local/bin/ccmake", bin/"ccmake-#{version_suffix}"
+    ##ln_s prefix/"local/bin/cmake", bin/"cmake-#{version_suffix}"
+    ##ln_s prefix/"local/bin/cmakexbuild", bin/"cmakexbuild-#{version_suffix}"
+    ##ln_s prefix/"local/bin/cpack", bin/"cpack-#{version_suffix}"
+    ##ln_s prefix/"local/bin/ctest", bin/"ctest-#{version_suffix}"
   end
 
-  def add_suffix(file, suffix)
+  def link_with_suffix(file, suffix)
     dir = File.dirname(file)
     ext = File.extname(file)
     base = File.basename(file, ext)
-    File.rename file, "#{dir}/#{base}-#{suffix}#{ext}"
+    ln_s file, bin/"#{base}-#{suffix}#{ext}"
   end
 
   test do
