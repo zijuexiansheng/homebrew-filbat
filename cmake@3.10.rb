@@ -31,11 +31,11 @@ class CmakeAt310 < Formula
     system "./bootstrap", *args, "--", "-DCMAKE_BUILD_TYPE=Release"
     system "make"
     system "make", "install"
-    mv bin/"ccmake" bin/"ccmake-#{version_suffix}"
-    mv bin/"cmake" bin/"cmake-#{version_suffix}"
-    mv bin/"cmakexbuild" bin/"cmakexbuild-#{version_suffix}"
-    mv bin/"cpack" bin/"cpack-#{version_suffix}"
-    mv bin/"ctest" bin/"ctest-#{version_suffix}"
+    mv bin/"ccmake", bin/"ccmake-#{version_suffix}"
+    mv bin/"cmake", bin/"cmake-#{version_suffix}"
+    mv bin/"cmakexbuild", bin/"cmakexbuild-#{version_suffix}"
+    mv bin/"cpack", bin/"cpack-#{version_suffix}"
+    mv bin/"ctest", bin/"ctest-#{version_suffix}"
   end
 
   test do
