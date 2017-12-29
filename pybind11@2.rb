@@ -29,9 +29,11 @@ class Pybind11AT2 < Formula
 
             cmake-3.10 ${source_path} -DCMAKE_INSTALL_PREFIX=${install_prefix} -DCMAKE_BUILD_TYPE=Release \\
         EOM
-        cmake_python2 = "-DPYBIND11_PYTHON_VERSION=2.7 \\"
+        cmake_python2 = "-DPYBIND11_PYTHON_VERSION=2.7 \\\n"
         cmake_last_part = "-Dpybind11_DIR=#{libexec}/share/cmake/pybind11 $@ \n\n"
         cmake_hint = <<~EOM
+            #!/usr/bin/env zsh
+
             echo "python 2.7"
             echo "    -DPYBIND11_PYTHON_VERSION=2.7"
             echo "cmake find_package():"
