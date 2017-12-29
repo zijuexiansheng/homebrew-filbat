@@ -23,7 +23,7 @@ class Pybind11AT2 < Formula
             fi
 
             source_path=$1
-            install_path=$2
+            install_prefix=$2
             shift
             shift
 
