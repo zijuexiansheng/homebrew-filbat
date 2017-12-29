@@ -40,7 +40,7 @@ class Pybind11AT2 < Formula
 
         File.open("py2bind11_cmake", "w"){|file| file.write(cmake_first_part + cmake_python2 + cmake_last_part)}
         File.open("py3bind11_cmake", "w"){|file| file.write(cmake_first_part + cmake_last_part)}
-        File.open("pybind_hint", "w"){|file| file.write(cmake_hint)}
+        File.open("pybind11_hint", "w"){|file| file.write(cmake_hint)}
         bin.install "py2bind11_cmake"
         bin.install "py3bind11_cmake"
         bin.install "pybind11_hint"
