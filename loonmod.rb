@@ -33,7 +33,7 @@ class Loonmod < Formula
     end
 
     def caveats
-        <<-EOS.undent
+        <<~EOS
             This formula is keg-only, which means brew will not link it.
             In order to use it, you need to add the following to your .bashrc or .zshrc: 
                 source #{opt_prefix}/bin/loonmod.zsh

@@ -34,7 +34,7 @@ class Ccd < Formula
     end
 
     def caveats
-        <<-EOS.undent
+        <<~EOS
             This formula is keg-only, which means brew will not link it.
             In order to use it, you need to add the following to your .zshrc:
                 fpath=(#{opt_prefix}/bin #{opt_prefix}/libexec/completion $fpath)
