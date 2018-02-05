@@ -227,7 +227,7 @@ class PythonAT2714 < Formula
 
       # Symlink the pkgconfig files into HOMEBREW_PREFIX so they're accessible.
       # TODO: the following may not work well!!!
-      (lib/"pkgconfig").install_symlink Dir[prefix/"local/Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc"] => "python-2.7.14.pc"
+      (lib/"pkgconfig").install_symlink prefix/"local/Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc" => "python-2.7.14.pc"
     end
     # Remove the site-packages that Python created in its Cellar.
     site_packages_cellar.rmtree
