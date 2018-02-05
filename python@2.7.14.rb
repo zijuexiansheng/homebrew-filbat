@@ -117,7 +117,7 @@ class PythonAT2714 < Formula
 
     args << "--without-gcc" if ENV.compiler == :clang
     # args << "--enable-unicode=ucs4" if build.with? "unicode-ucs4"
-    args << "--enable-unicode=ucs2"
+    args << "--enable-unicode=ucs4"
 
     cflags   = []
     ldflags  = []
