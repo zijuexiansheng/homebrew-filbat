@@ -284,9 +284,9 @@ class PythonAT2714 < Formula
                   "--install-scripts=#{bin}",
                   "--install-lib=#{site_packages}"]
 
-    (libexec/"setuptools").cd { system "#{bin}/python-2.7", *setup_args }
-    (libexec/"pip").cd { system "#{bin}/python-2.7", *setup_args }
-    (libexec/"wheel").cd { system "#{bin}/python-2.7", *setup_args }
+    (libexec/"setuptools").cd { system "#{bin}/python-2.7.14", *setup_args }
+    (libexec/"pip").cd { system "#{bin}/python-2.7.14", *setup_args }
+    (libexec/"wheel").cd { system "#{bin}/python-2.7.14", *setup_args }
 
     # When building from source, these symlinks will not exist, since
     # post_install happens after linking.
