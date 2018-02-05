@@ -5,8 +5,8 @@ class Loonmod < Formula
     # url "https://github.com/zijuexiansheng/loonmod.git", :using => :git, :revision => "b9877d86290215d135831da2537e8c3619864033"
     # head "https://github.com/zijuexiansheng/loonmod.git", :using => :git
     url "https://github.com/zijuexiansheng/loonmod.git", :using => :git
-    version "1.0.12"
-    depends_on "python" => :run
+    version "1.0.13"
+    depends_on "zijuexiansheng/filbat/python@2.7.14" => :run
     depends_on "zijuexiansheng/filbat/cmake@3.10" => :build
 
     def loonlocaldir

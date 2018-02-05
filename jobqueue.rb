@@ -3,8 +3,8 @@ class Jobqueue < Formula
     homepage "https://github.com/zijuexiansheng/jobqueue"
     url "https://github.com/zijuexiansheng/jobqueue.git", :using => :git, :revision => "2e71e61cbef91a898628657a59a557a453b8f0ab"
     head "https://github.com/zijuexiansheng/jobqueue.git", :using => :git
-    version "0.1.2"
-    depends_on "python" => :run
+    version "0.1.3"
+    depends_on "zijuexiansheng/filbat/python@2.7.14" => :run
 
     def loonlocaldir
         var/"loonlocalfiles"

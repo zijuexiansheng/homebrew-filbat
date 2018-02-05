@@ -3,9 +3,9 @@ class Ccd < Formula
     homepage "https://github.com/zijuexiansheng/convenient_cd"
     keg_only "This is only a script. Read the caveats above and ignore the ones below"
     url "https://github.com/zijuexiansheng/convenient_cd.git", :using => :git
-    version "0.1.8"
+    version "0.1.9"
     
-    depends_on "python" => :run
+    depends_on "zijuexiansheng/filbat/python@2.7.14" => :run
 
     def loonlocaldir
         var/"loonlocalfiles"
@@ -30,7 +30,7 @@ class Ccd < Formula
 
     def post_install
         loonlocaldir_ccd.mkpath
-        system "python #{libexec}/pyccd.py create"
+        system "python-2.7.14 #{libexec}/pyccd.py create"
     end
 
     def caveats
