@@ -281,7 +281,7 @@ class PythonAT2714 < Formula
                   "--verbose",
                   "--single-version-externally-managed",
                   "--record=installed.txt",
-                  "--install-scripts=#{bin}",
+                  "--install-scripts=#{prefix}/local/bin",
                   "--install-lib=#{site_packages}"]
 
     (libexec/"setuptools").cd { system "#{bin}/python-2.7.14", *setup_args }
