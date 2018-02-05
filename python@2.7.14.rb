@@ -71,8 +71,12 @@ class PythonAT2714 < Formula
     end
   end
 
+  def prefix_local
+    prefix / "local"
+  end
+
   def lib_cellar
-    prefix / (OS.mac? ? "local/Frameworks/Python.framework/Versions/2.7" : "local") /
+    prefix_local / (OS.mac? ? "Frameworks/Python.framework/Versions/2.7" : "") /
       "lib/python2.7"
   end
 
@@ -83,6 +87,10 @@ class PythonAT2714 < Formula
   # The var location of site-packages.
   def site_packages
     var/"loonlocalfiles/python2.7/lib/python2.7/site-packages"
+  end
+
+  def loon_frameworks
+    var/"loonlocalfiles/python2.7/Frameworks"
   end
 
   # setuptools remembers the build flags python is built with and uses them to
@@ -109,9 +117,9 @@ class PythonAT2714 < Formula
     ENV["PYTHONPATH"] = nil
 
     args = %W[
-      --prefix=#{prefix}/local
+      --prefix=#{prefix_local}
       --enable-ipv6
-      #{OS.mac? ? "--enable-framework=#{prefix}/local/Frameworks" : "--enable-shared"}
+      #{OS.mac? ? "--enable-framework=#{prefix_local}/Frameworks" : "--enable-shared"}
       --without-ensurepip
     ]
 
@@ -222,12 +230,12 @@ class PythonAT2714 < Formula
       # Prevent third-party packages from building against fragile Cellar paths
       inreplace [lib_cellar/"_sysconfigdata.py",
                  lib_cellar/"config/Makefile",
-                 prefix/"local/Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc"],
-                 prefix/"local", opt_prefix/"local"
+                 prefix_local/"Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc"],
+                 prefix_local, opt_prefix/"local"
 
       # Symlink the pkgconfig files into HOMEBREW_PREFIX so they're accessible.
       # TODO: the following may not work well!!!
-      (lib/"pkgconfig").install_symlink prefix/"local/Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc" => "python-2.7.14.pc"
+      (lib/"pkgconfig").install_symlink prefix_local/"Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc" => "python-2.7.14.pc"
     end
     # Remove the site-packages that Python created in its Cellar.
     site_packages_cellar.rmtree
@@ -262,6 +270,11 @@ class PythonAT2714 < Formula
 
     # Create a site-packages in var/loonlocalfiles/python2.7/lib/python2.7/site-packages
     site_packages.mkpath
+
+    if OS.mac?
+        loon_frameworks.unlink if loon_frameworks.exist?
+        loon_frameworks.parent.install_symlink prefix_local/"Frameworks"
+    end
 
     # Symlink the prefix site-packages into the cellar.
     site_packages_cellar.unlink if site_packages_cellar.exist?
