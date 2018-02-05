@@ -82,7 +82,7 @@ class PythonAT2714 < Formula
 
   # The var location of site-packages.
   def site_packages
-    var/"loonlocalfiles/python2.7/site-packages"
+    var/"loonlocalfiles/python2.7/lib/python2.7/site-packages"
   end
 
   # setuptools remembers the build flags python is built with and uses them to
@@ -117,7 +117,7 @@ class PythonAT2714 < Formula
 
     args << "--without-gcc" if ENV.compiler == :clang
     # args << "--enable-unicode=ucs4" if build.with? "unicode-ucs4"
-    args << "--enable-unicode=ucs4"
+    args << "--enable-unicode=ucs2"
 
     cflags   = []
     ldflags  = []
@@ -259,7 +259,7 @@ class PythonAT2714 < Formula
     # Fix up the site-packages so that user-installed Python software survives
     # minor updates, such as going from 2.7.0 to 2.7.1:
 
-    # Create a site-packages in var/loonlocalfiles/python2.7/site-packages
+    # Create a site-packages in var/loonlocalfiles/python2.7/lib/python2.7/site-packages
     site_packages.mkpath
 
     # Symlink the prefix site-packages into the cellar.
@@ -311,9 +311,10 @@ class PythonAT2714 < Formula
     end
 
     cfg = lib_cellar/"distutils/distutils.cfg"
+    # [install] will determine the default path for pip to install a package
     cfg.atomic_write <<~EOS
       [install]
-      prefix=#{HOMEBREW_PREFIX}
+      prefix=#{var}/loonlocalfiles/python2.7
 
       [build_ext]
       include_dirs=#{include_dirs.join ":"}
