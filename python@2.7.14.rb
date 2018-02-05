@@ -14,7 +14,7 @@ class PythonAT2714 < Formula
 
   # Please don't add a wide/ucs4 option as it won't be accepted.
   # More details in: https://github.com/Homebrew/homebrew/pull/32368
-  option "with-unicode-ucs4", "Build unicode support with UCS4"
+  # option "with-unicode-ucs4", "Build unicode support with UCS4"
   option "with-quicktest", "Run `make quicktest` after the build (for devs; may fail)"
   option "with-tcl-tk", "Use Homebrew's Tk instead of macOS Tk (has optional Cocoa and threads support)"
   if OS.mac?
@@ -116,7 +116,8 @@ class PythonAT2714 < Formula
     ]
 
     args << "--without-gcc" if ENV.compiler == :clang
-    args << "--enable-unicode=ucs4" if build.with? "unicode-ucs4"
+    # args << "--enable-unicode=ucs4" if build.with? "unicode-ucs4"
+    args << "--enable-unicode=ucs2"
 
     cflags   = []
     ldflags  = []
