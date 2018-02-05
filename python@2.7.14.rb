@@ -25,10 +25,10 @@ class PythonAT2714 < Formula
 
   # sphinx-doc depends on python, but on 10.6 or earlier python is fulfilled by
   # brew, which would lead to circular dependency.
-  if MacOS.version > :snow_leopard
-    option "with-sphinx-doc", "Build HTML documentation"
-    depends_on "sphinx-doc" => [:build, :optional]
-  end
+  ## if MacOS.version > :snow_leopard
+  ##   option "with-sphinx-doc", "Build HTML documentation"
+  ##   depends_on "sphinx-doc" => [:build, :optional]
+  ## end
 
   deprecated_option "quicktest" => "with-quicktest"
   deprecated_option "with-brewed-tk" => "with-tcl-tk"
@@ -111,7 +111,7 @@ class PythonAT2714 < Formula
     args = %W[
       --prefix=#{prefix}/local
       --enable-ipv6
-      #{OS.mac? ? "--enable-framework=#{frameworks}" : "--enable-shared"}
+      #{OS.mac? ? "--enable-framework=#{prefix}/local/Frameworks" : "--enable-shared"}
       --without-ensurepip
     ]
 
@@ -177,7 +177,7 @@ class PythonAT2714 < Formula
     # `brew install enchant && pip2 install pyenchant`
     inreplace "./Lib/ctypes/macholib/dyld.py" do |f|
       f.gsub! "DEFAULT_LIBRARY_FALLBACK = [", "DEFAULT_LIBRARY_FALLBACK = [ '#{HOMEBREW_PREFIX}/lib',"
-      f.gsub! "DEFAULT_FRAMEWORK_FALLBACK = [", "DEFAULT_FRAMEWORK_FALLBACK = [ '#{HOMEBREW_PREFIX}/Frameworks',"
+      f.gsub! "DEFAULT_FRAMEWORK_FALLBACK = [", "DEFAULT_FRAMEWORK_FALLBACK = [ '#{var}/loonlocalfiles/python2.7/Frameworks',"
     end
 
     if build.with? "tcl-tk"
@@ -207,7 +207,7 @@ class PythonAT2714 < Formula
     ENV.deparallelize do
       # Tell Python not to install into /Applications
       system "make", "install", "PYTHONAPPSDIR=#{prefix}/local"
-      system "make", "frameworkinstallextras", "PYTHONAPPSDIR=#{pkgshare}" if OS.mac?
+      system "make", "frameworkinstallextras", "PYTHONAPPSDIR=#{prefix}/local/share/python@2.7.14" if OS.mac?
     end
 
     # Fixes setting Python build flags for certain software
@@ -222,11 +222,12 @@ class PythonAT2714 < Formula
       # Prevent third-party packages from building against fragile Cellar paths
       inreplace [lib_cellar/"_sysconfigdata.py",
                  lib_cellar/"config/Makefile",
-                 frameworks/"Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc"],
+                 prefix/"local/Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc"],
                  prefix/"local", opt_prefix/"local"
 
       # Symlink the pkgconfig files into HOMEBREW_PREFIX so they're accessible.
-      (lib/"pkgconfig").install_symlink Dir[frameworks/"Python.framework/Versions/Current/lib/pkgconfig/*"]
+      # TODO: the following may not work well!!!
+      (lib/"pkgconfig").install_symlink Dir[prefix/"local/Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc"] => "python-2.7.14.pc"
     end
     # Remove the site-packages that Python created in its Cellar.
     site_packages_cellar.rmtree
@@ -235,12 +236,12 @@ class PythonAT2714 < Formula
     (libexec/"pip").install resource("pip")
     (libexec/"wheel").install resource("wheel")
 
-    if MacOS.version > :snow_leopard && build.with?("sphinx-doc")
-      cd "Doc" do
-        system "make", "html"
-        doc.install Dir["build/html/*"]
-      end
-    end
+    ## if MacOS.version > :snow_leopard && build.with?("sphinx-doc")
+    ##   cd "Doc" do
+    ##     system "make", "html"
+    ##     doc.install Dir["build/html/*"]
+    ##   end
+    ## end
 
     # Remove commands shadowing system python.
     {
@@ -387,6 +388,10 @@ class PythonAT2714 < Formula
       #{site_packages}
 
     See: https://docs.brew.sh/Homebrew-and-Python.html
+
+    [WARNING]: there might be some trouble related to "pkgconfig" on Mac OSX. If
+               this is the case, then the best way is probably disable installation
+               of this package on Mac OSX
     EOS
   end
 
