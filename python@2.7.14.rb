@@ -250,7 +250,7 @@ class PythonAT2714 < Formula
       "pythonw" => "pythonw-2.7.14",
       "smtpd.py" => "smtpd-2.7.14.py",
     }.each do |unversioned_name, versioned_name|
-      bin.install_symlink prefix/"local"/unversioned_name => versioned_name
+      bin.install_symlink prefix/"local/bin"/unversioned_name => versioned_name
     end
   end
 
