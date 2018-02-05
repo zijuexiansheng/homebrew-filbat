@@ -289,12 +289,11 @@ class PythonAT2714 < Formula
     (libexec/"pip").cd { system "#{bin}/python-2.7.14", *setup_args }
     (libexec/"wheel").cd { system "#{bin}/python-2.7.14", *setup_args }
 
-    # When building from source, these symlinks will not exist, since
+    # When building from source, these symlinks may not exist on some system, since
     # post_install happens after linking.
-    # don't need this in python@2.7.14
-    ## %w[pip2 pip2.7 easy_install-2.7].each do |e|
-    ##   (HOMEBREW_PREFIX/"bin").install_symlink bin/e
-    ## end
+    %w[pip easy_install].each do |e|
+      (HOMEBREW_PREFIX/"bin").install_symlink prefix/"local/bin"/e => "#{e}-2.7.14"
+    end
 
     # Help distutils find brewed stuff when building extensions
     include_dirs = [HOMEBREW_PREFIX/"include", Formula["openssl"].opt_include]
