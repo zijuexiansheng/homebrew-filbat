@@ -5,7 +5,7 @@ class Pybind11AT2 < Formula
     sha256 "f8bd1509578b2a1e7407d52e6ee8afe64268909a1bbda620ca407318598927e7"
 
     depends_on "zijuexiansheng/filbat/cmake@3.10" => :build
-    depends_on "python" => :recommended
+    depends_on "python@2" => :recommended
 
     revision 1
 
