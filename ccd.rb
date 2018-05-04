@@ -3,9 +3,9 @@ class Ccd < Formula
     homepage "https://github.com/zijuexiansheng/convenient_cd"
     keg_only "This is only a script. Read the caveats above and ignore the ones below"
     url "https://github.com/zijuexiansheng/convenient_cd.git", :using => :git
-    version "0.1.9"
+    version "0.1.10"
     
-    depends_on "zijuexiansheng/filbat/python@2.7.14" => :run
+    depends_on "zijuexiansheng/filbat/python@2.7.14" => :recommended
 
     def loonlocaldir
         var/"loonlocalfiles"
