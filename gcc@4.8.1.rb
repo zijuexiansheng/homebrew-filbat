@@ -17,7 +17,7 @@ class GccAT481 < Formula
     end
 
     def caveats
-        <<<~EOS
+        <<~EOS
             Use the following command to use this formula.
             TBA
         EOS
