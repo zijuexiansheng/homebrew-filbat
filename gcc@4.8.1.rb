@@ -10,8 +10,9 @@ class GccAT481 < Formula
         system "./contrib/download_prerequisites"
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "../configure", "--prefix=#{prefix}", "--enable-languages=c,c++,fortran,go", "--disable-multilib"
-            system "make"
+            ENV["CPPFLAGS"] = "-I#{Formula["zlib"].include}" unless OS.mac?
+            system "../configure", "--prefix=#{prefix}", "--enable-languages=c,c++,fortran,go", "--disable-multilib", "--enable-stage1-checking", "--with-system-zlib", "MAKEINFO=missing"
+            system "make", "-j12"
             system "make", "install"
         end
     end
