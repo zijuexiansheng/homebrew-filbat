@@ -203,7 +203,7 @@ class PythonAT2716 < Formula
     (lib/"pkgconfig").install_symlink prefix_local/"Frameworks/Python.framework/Versions/Current/lib/pkgconfig/python-2.7.pc" => "python-2.7.16.pc"
 
     # Remove 2to3 because Python 3 also installs it
-    rm bin/"2to3"
+    # rm bin/"2to3"
 
     # Remove the site-packages that Python created in its Cellar.
     site_packages_cellar.rmtree
