@@ -8,7 +8,7 @@ class CmakeAT310 < Formula
   revision 2
 
   bottle do
-    root_url "https://filbat.servequake.com/downloads/bintray/cmake"
+    root_url "http://filbat.servequake.com/downloads/bintray/cmake"
     cellar :any_skip_relocation
     ## sha256 "8771baaa9ea698a4aa84045917bd7ffa1834b4f5310b0fb26c279e1160b0dd1e" => :high_sierra
     ## sha256 "4e81dc8263c3affe86e8e7210f3381b533956215f2e425dc250686bc7475f0c4" => :sierra
