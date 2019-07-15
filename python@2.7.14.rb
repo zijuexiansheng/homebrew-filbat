@@ -6,10 +6,12 @@ class PythonAT2714 < Formula
   head "https://github.com/python/cpython.git", :branch => "2.7"
 
   bottle do
-    sha256 "783739edc153fa49d624f80baf543404e39aefcb137896f716fd39d0f8a40101" => :high_sierra
-    sha256 "ff784eab3e8072ae8a1e3b7b51e932f905a39a8d65cbf500f27a844cfa1e261a" => :sierra
-    sha256 "8853f6910125020b4cd92bc02a24df157981a78c727786e60516337beaf23c9d" => :el_capitan
+    root_url "http://filbat.servequake.com/downloads/bintray/python"    
+    ## sha256 "783739edc153fa49d624f80baf543404e39aefcb137896f716fd39d0f8a40101" => :high_sierra
+    ## sha256 "ff784eab3e8072ae8a1e3b7b51e932f905a39a8d65cbf500f27a844cfa1e261a" => :sierra
+    ## sha256 "8853f6910125020b4cd92bc02a24df157981a78c727786e60516337beaf23c9d" => :el_capitan
     sha256 "c7eb4f68e3760306ab94d42ce60985cccad45032232e38202b2953b3e3bd8abd" => :x86_64_linux
+    sha256 "fadbe57b122700fac422412790ee4032853a3f2a206af3076e28f782caa25406" => :yosemite
   end
 
   # Please don't add a wide/ucs4 option as it won't be accepted.
