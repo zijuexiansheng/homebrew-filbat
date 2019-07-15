@@ -6,7 +6,9 @@ class PythonAT2716 < Formula
   head "https://github.com/python/cpython.git", :branch => "2.7"
 
   bottle do
+    root_url "http://filbat.servequake.com/downloads/bintray/python"    
     rebuild 3
+    sha256 "4c08a149c906722287ec7ec4298de8f4dfc38c8c8b1357b79474148c42977872" => :yosemite
     sha256 "df7b4c37f703122b0689808d7d66dc99dbf693d7bdcc1bc924a1a3b2053495eb" => :x86_64_linux
   end
 
