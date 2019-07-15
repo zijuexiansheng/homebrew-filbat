@@ -13,6 +13,7 @@ class CmakeAT310 < Formula
     ## sha256 "8771baaa9ea698a4aa84045917bd7ffa1834b4f5310b0fb26c279e1160b0dd1e" => :high_sierra
     ## sha256 "4e81dc8263c3affe86e8e7210f3381b533956215f2e425dc250686bc7475f0c4" => :sierra
     ## sha256 "6d321c0cbe941e21ac35f8700231ff02ce1edb1072fd9364d8b288838d103068" => :el_capitan
+    sha256 "c5578c2a968c85b4730bd8e3a2b3608ce807c33e07e5d7948149362a04d33cab" => :yosemite
     sha256 "0add61d96d03edd0ceb80be024dab20012fd243d6f897ae436e8e14e03879588" => :x86_64_linux
   end
 
