@@ -4,7 +4,16 @@ class Tex2fig < Formula
     url "https://github.com/zijuexiansheng/tex2fig.git", :using => :git, :revision => "e663d26c28a15fb02b7aa67abfa8f99bcfdf9df5"
     head "https://github.com/zijuexiansheng/tex2fig.git", :using => :git
     version "0.1.8"
-    depends_on "zijuexiansheng/filbat/python@2.7.14" => :recommended
+
+    begin
+        Formula["python@2"]
+    rescue FormulaUnavailableError
+        depends_on "python@2" => :build
+    end
+
+    def python2 
+        Formula["python@2"].opt_bin/"python"
+    end    
 
     def install
         system "./install.sh", "#{libexec}"
@@ -13,6 +22,6 @@ class Tex2fig < Formula
     end
 
     test do
-        system "tex2fig", "-h"
+        system python2, opt_bin/"tex2fig", "-h"
     end
 end

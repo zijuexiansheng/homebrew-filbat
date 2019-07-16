@@ -6,8 +6,26 @@ class Loonmod < Formula
     # head "https://github.com/zijuexiansheng/loonmod.git", :using => :git
     url "https://github.com/zijuexiansheng/loonmod.git", :using => :git
     version "1.0.14"
-    depends_on "zijuexiansheng/filbat/python@2.7.14" => :recommended
-    depends_on "zijuexiansheng/filbat/cmake@3.10" => :build
+
+    begin
+        Formula["cmake"]
+    rescue FormulaUnavailableError
+        depends_on "cmake" => :build
+    end
+
+    begin
+        Formula["python@2"]
+    rescue FormulaUnavailableError
+        depends_on "python@2" => :build
+    end
+
+    def cmake
+        Formula["cmake"].opt_bin/"cmake"
+    end    
+
+    def python2 
+        Formula["python@2"].opt_bin/"python"
+    end    
 
     def loonlocaldir
         var/"loonlocalfiles"
@@ -20,7 +38,7 @@ class Loonmod < Formula
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "cmake-3.10", "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_CACHE=#{loonlocaldir}"
+            system cmake, "..", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_LOONLOCAL_CACHE=#{loonlocaldir}"
             system "make", "install"
         end
     end
@@ -29,7 +47,7 @@ class Loonmod < Formula
         loonlocaldir.mkpath
         loonlocaldir_loonmod.mkpath
         ENV["LOONCONFIG"]="#{loonlocaldir}"
-        system "#{prefix}/bin/moddb.py db create"
+        system python2, "#{prefix}/bin/moddb.py", "db", "create"
     end
 
     def caveats

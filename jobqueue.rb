@@ -4,7 +4,16 @@ class Jobqueue < Formula
     url "https://github.com/zijuexiansheng/jobqueue.git", :using => :git, :revision => "2e71e61cbef91a898628657a59a557a453b8f0ab"
     head "https://github.com/zijuexiansheng/jobqueue.git", :using => :git
     version "0.1.4"
-    depends_on "zijuexiansheng/filbat/python@2.7.14" => :recommended
+
+    begin
+        Formula["python@2"]
+    rescue FormulaUnavailableError
+        depends_on "python@2" => :build
+    end
+
+    def python2 
+        Formula["python@2"].opt_bin/"python"
+    end    
 
     def loonlocaldir
         var/"loonlocalfiles"
@@ -21,11 +30,11 @@ class Jobqueue < Formula
         bin.install "jobqueue"
     end
     def post_install
-        system "jobqueue", "create"
+        system python2, opt_bin/"jobqueue", "create"
     end
 
     test do
-        system "jobqueue", "-h"
+        system python2, opt_bin/"jobqueue", "-h"
     end
 end
 

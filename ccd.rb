@@ -5,7 +5,15 @@ class Ccd < Formula
     url "https://github.com/zijuexiansheng/convenient_cd.git", :using => :git
     version "0.1.11"
     
-    depends_on "zijuexiansheng/filbat/python@2.7.14" => :recommended
+    begin
+        Formula["python@2"]
+    rescue FormulaUnavailableError
+        depends_on "python@2" => :build
+    end
+
+    def python2 
+        Formula["python@2"].opt_bin/"python"
+    end
 
     def loonlocaldir
         var/"loonlocalfiles"
@@ -30,7 +38,7 @@ class Ccd < Formula
 
     def post_install
         loonlocaldir_ccd.mkpath
-        system "python-2.7.14 #{libexec}/pyccd.py create"
+        system python2, "#{libexec}/pyccd.py", "create"
     end
 
     def caveats

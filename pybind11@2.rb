@@ -4,15 +4,32 @@ class Pybind11AT2 < Formula
     url "https://github.com/pybind/pybind11/archive/v2.2.1.tar.gz"
     sha256 "f8bd1509578b2a1e7407d52e6ee8afe64268909a1bbda620ca407318598927e7"
 
-    depends_on "zijuexiansheng/filbat/cmake@3.10" => :build
-    depends_on "python@2" => :recommended
+    begin
+        Formula["cmake"]
+    rescue FormulaUnavailableError
+        depends_on "cmake" => :build
+    end
+
+    begin
+        Formula["python@2"]
+    rescue FormulaUnavailableError
+        depends_on "python@2" => :build
+    end
+
+    def cmake
+        Formula["cmake"].opt_bin/"cmake"
+    end    
+
+    def python2 
+        Formula["python@2"].opt_bin/"python"
+    end    
 
     revision 1
 
     def install
         Dir.mkdir "build"
         Dir.chdir "build" do
-            system "cmake-3.10", "..", "-DCMAKE_INSTALL_PREFIX=#{libexec}", "-DCMAKE_BUILD_TYPE=Release", "-DPYBIND11_PYTHON_VERSION=2.7"
+            system cmake, "..", "-DCMAKE_INSTALL_PREFIX=#{libexec}", "-DCMAKE_BUILD_TYPE=Release", "-DPYBIND11_PYTHON_VERSION=2.7"
             system "make", "check"
             system "make", "install"
         end
@@ -29,7 +46,7 @@ class Pybind11AT2 < Formula
             shift
             shift
 
-            cmake-3.10 ${source_path} -DCMAKE_INSTALL_PREFIX=${install_prefix} -DCMAKE_BUILD_TYPE=Release \\
+            #{cmake} ${source_path} -DCMAKE_INSTALL_PREFIX=${install_prefix} -DCMAKE_BUILD_TYPE=Release \\
         EOM
         cmake_python2 = "-DPYBIND11_PYTHON_VERSION=2.7 \\\n"
         cmake_last_part = "-Dpybind11_DIR=#{libexec}/share/cmake/pybind11 $@ \n\n"
